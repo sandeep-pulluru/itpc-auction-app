@@ -1,0 +1,67 @@
+{
+    "chainName": "fabric-client1",
+    "chaincodeID": "myar1",
+    "channelID": "myc1",
+    "goPath": "../art/artchaincode",
+    "chaincodePath": "github.com",
+    "keyValueStore": "/tmp/fabric-client-kvs",
+    "waitTime": "30000",
+    "caserver": {
+        "ca_url": "http://localhost:8054"
+    },
+    "orderer": {
+        "orderer_url": "grpc://localhost:8050"
+    },
+    "peers": [{
+        "peer_url": "grpc://localhost:8051"
+    }],
+    "events": [{
+        "event_url": "grpc://localhost:8053"
+    }],
+    "users": [{
+        "username": "admin",
+        "secret": "adminpw"
+    }],
+    "postimages": [{
+        "image": ["100", "USER"]
+    }],
+    "invokeobjects": [{
+            "method": "iPostUser",
+            "args": ["100", "USER", "Ashley Hart", "TRD", "Morrisville Parkway, #216, Morrisville, NC 27560", "9198063535", "ashley@itpeople.com", "SUNTRUST", "0001732345", "0234678", "2017-01-02 15:04:05"]
+        },
+        {
+            "method": "iPostUser",
+            "args": ["200", "USER", "Sotheby", "AH", "One Picadally Circus , #216, London, UK ", "9198063535", "admin@sotheby.com", "Standard Chartered", "0001732345", "0234678", "2017-01-02 15:04:05"]
+        },
+        {
+            "method": "iPostUser",
+            "args": ["300", "USER", "Barry Smith", "TRD", "155 Regency Parkway, #111, Cary, 27518 ", "9198063535", "barry@us.ibm.com", "RBC Centura", "0001732345", "0234678", "2017-01-02 15:04:05"]
+        },
+        {
+            "method": "iPostImages",
+            "args": ["100", "USER"]
+        },
+        {
+            "method": "iPostItem",
+            "args": ["1100", "ARTINV", "modern Wall Painting", "Scott Palmer", "20140202", "Reprint", "landscape", "Acrylic", "10 x 10 in", "art2.png", "2600", "300", "2017-01-23 14:04:05"]
+        },
+        {
+            "method": "iPostItem",
+            "args": ["1200", "ARTINV", "Splash of Color", "Jennifer Drew", "20160115", "Reprint", "modern", "Water Color", "15 x 15 in", "art3.png", "1600", "100", "2017-01-23 14:04:05"]
+        }
+    ],
+    "deployRequest": {
+        "functionName": "init",
+        "args": []
+    },
+    "invokeRequest": {
+        "functionName": "iCloseOpenAuctions",
+        "args": ["2016","CLAUC","2017-03-30 16:40:00"]
+    },
+    "queryRequest": {
+        "functionName": "qGetUser",
+        "args": [
+            "400"
+        ]
+    }
+}
