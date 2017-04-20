@@ -1,13 +1,12 @@
 ## Instructions to Setup Auction App.
 *  Download the Auction App from https://github.com/sandp125/itpc-auction-app
 *  cd itpc-auction-app.
-*  Create the containers.
-     docker-compose -f docker-compose-gettingstarted.yml up -d
+*  docker-compose -f docker-compose-gettingstarted.yml up -d
 *  cd artui
 *  npm install
 *  node deploy.js.
 *  node app.js.   
-    As part of app.js, we are recording 3 users and 2 images on the blockchain. Settings for the images and users is stored in     config.json.
+    As part of app.js, we are recording 3 users and 2 images on the blockchain. Settings for the images and users is stored in         config.json.
 *  open http://localhost:3000 to browse the Auction App. This will take you to a Home Screen which displays two images.
 
 
