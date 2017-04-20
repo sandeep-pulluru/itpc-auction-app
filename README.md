@@ -7,7 +7,7 @@
 *  run `node deploy.js` (Deploys the chaincode).
 *  run `node app.js` to start the application at port 3000.   
     As part of app.js, we are recording 3 users and 2 images on the blockchain. Settings for the images and users is stored in         `config.json`.
-*  open http://localhost:3000 to browse the Auction App. This will take you to a Home Screen which displays two images.
+*  open `http://localhost:3000` to browse the Auction App. This will take you to a Home Screen which displays two images.
 
 
 ## Issues.
