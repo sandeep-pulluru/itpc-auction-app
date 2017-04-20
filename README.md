@@ -1,6 +1,6 @@
 ## Instructions to Setup Auction App.
 *  Download the Auction App from https://github.com/sandp125/itpc-auction-app
-*  `cd itpc-auction-app.
+*  `cd itpc-auction-app`.
 *  docker-compose -f docker-compose-gettingstarted.yml up -d
 *  cd artui
 *  npm install
