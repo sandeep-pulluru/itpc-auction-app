@@ -36,7 +36,7 @@ cat log.txt
    fi
 echo "SUCCESSFUL CHANNEL CREATION" >> results.txt
 sleep 5
-TOTAL_PEERS=3
+TOTAL_PEERS=1
 i=0
 while test $i -lt $TOTAL_PEERS  
 do
@@ -54,6 +54,6 @@ echo "SUCCESSFUL JOIN CHANNEL on PEER$i"
 i=$((i+1))
 sleep 10
 done
-echo "Peer0 , Peer1 and Peer2 are added to the channel myc1"
+echo "Peer0 is added to the channel myc1"
 cat log.txt
 exit 0

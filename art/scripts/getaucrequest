@@ -1,2 +1,0 @@
-peer chaincode query -l golang -n mycc -c '{"Args": ["qGetAuctionRequest", "1111"]}'
-peer chaincode query -l golang -n mycc -c '{"Args": ["qGetAuctionRequest", "1112"]}'

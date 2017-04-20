@@ -56,12 +56,12 @@
     },
     "invokeRequest": {
         "functionName": "iCloseOpenAuctions",
-        "args": ["2016","CLAUC","2017-03-30 16:40:00"]
+        "args": ["2016", "CLAUC", "2017-03-30 16:40:00"]
     },
     "queryRequest": {
-        "functionName": "qGetUser",
+        "functionName": "qGetItem",
         "args": [
-            "400"
+            "1300"
         ]
     }
 }

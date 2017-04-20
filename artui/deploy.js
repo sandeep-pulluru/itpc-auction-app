@@ -37,65 +37,63 @@ var chain;
 var eventhub;
 var tx_id = null;
 
-if (!process.env.GOPATH){
-	process.env.GOPATH = config.goPath;
-}
+process.env.GOPATH = __dirname + '/' + config.goPath;
 
 init();
 
 function init() {
-	chain = client.newChain(config.chainName);
-	chain.addOrderer(new Orderer(config.orderer.orderer_url));
-	eventhub = new EventHub();
-	eventhub.setPeerAddr(config.events[0].event_url);
-	eventhub.connect();
-	for (var i = 0; i < config.peers.length; i++) {
-		chain.addPeer(new Peer(config.peers[i].peer_url));
-	}
+    chain = client.newChain(config.chainName);
+    chain.addOrderer(new Orderer(config.orderer.orderer_url));
+    eventhub = new EventHub();
+    eventhub.setPeerAddr(config.events[0].event_url);
+    eventhub.connect();
+    for (var i = 0; i < config.peers.length; i++) {
+        chain.addPeer(new Peer(config.peers[i].peer_url));
+    }
 }
 
 hfc.newDefaultKeyValueStore({
-	path: config.keyValueStore
+    path: config.keyValueStore
 }).then(function(store) {
-	client.setStateStore(store);
-	return helper.getSubmitter(client);
+    client.setStateStore(store);
+    return helper.getSubmitter(client);
 }).then(
-	function(admin) {
-		logger.info('Successfully obtained enrolled user to deploy the chaincode');
+    function(admin) {
+        logger.info('Successfully obtained enrolled user to deploy the chaincode');
 
-		logger.info('Executing Deploy');
-		tx_id = helper.getTxId();
-		var nonce = utils.getNonce();
-		var args = helper.getArgs(config.deployRequest.args);
-		// send proposal to endorser
-		var request = {
-			chaincodePath: config.chaincodePath,
-			chaincodeId: config.chaincodeID,
-			fcn: config.deployRequest.functionName,
-			args: args,
-			chainId: config.channelID,
-			txId: tx_id,
-			nonce: nonce,
-		};
-		return chain.sendDeploymentProposal(request);
-	}
+        logger.info('Executing Deploy');
+        tx_id = helper.getTxId();
+        var nonce = utils.getNonce();
+        var args = helper.getArgs(config.deployRequest.args);
+        // send proposal to endorser
+        var request = {
+            chaincodePath: config.chaincodePath,
+            chaincodeId: config.chaincodeID,
+            fcn: config.deployRequest.functionName,
+            args: args,
+            chainId: config.channelID,
+            txId: tx_id,
+            nonce: nonce,
+        };
+        return chain.sendDeploymentProposal(request);
+    }
 ).then(
-	function(results) {
-		logger.info('Successfully obtained proposal responses from endorsers');
-		return helper.processProposal(tx_id, eventhub, chain, results, 'deploy');
-	}
+    function(results) {
+        logger.info('Successfully obtained proposal responses from endorsers');
+        return helper.processProposal(tx_id, eventhub, chain, results, 'deploy');
+    }
 ).then(
-	function(response) {
-		if (response.status === 'SUCCESS') {
-			logger.info('Successfully sent deployment transaction to the orderer.');
-			process.exit();
-		} else {
-			logger.error('Failed to order the deployment endorsement. Error code: ' + response.status);
-		}
-	}
+    function(response) {
+        if (response.status === 'SUCCESS') {
+            logger.info('Successfully sent deployment transaction to the orderer.');
+            process.exit();
+        } else {
+            logger.error('Failed to order the deployment endorsement. Error code: ' + response.status);
+        }
+    }
 ).catch(
-	function(err) {
-		eventhub.disconnect();
-		logger.error(err.stack ? err.stack : err);
-	}
+    function(err) {
+        eventhub.disconnect();
+        logger.error(err.stack ? err.stack : err);
+    }
 );
