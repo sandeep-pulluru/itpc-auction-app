@@ -12,6 +12,6 @@
 
 ## Issues.
 
-1. Currently Auction App is using the `fabric x86_64-0.7.0-snapshot-c7b3fe0` images to create the Peers and Orderer. We are currently working on moving to the new 1.0 Alpha Images.
-2. A known limitation of the current application is that you can only post two images into the blockchain. Anything more than 2 images will return a `GRPC maximun message received error` when you query the image catalog from the home screen. The current chaincode encrypts the complete image file and stores it on the blockchain. As a result, when you query the image catalog, the total bytes returned is exceeding the maximum message size that can be recieved from a Peer. We are currenly looking at solutions to store image on a separate web server and only encrypt the metadata when storing on the blockchain.
+1. Currently Auction App is using the `fabric x86_64-0.7.0-snapshot-c7b3fe0` images to create the Peers and Orderer. We are working on moving to the new 1.0 Alpha Images.
+2. A known limitation of the current application is that you can only post two images into the blockchain. Anything more than 2 images will return a `GRPC maximun message received error` when you query the image catalog from the home screen. The current chaincode encrypts the complete image file and stores it on the blockchain. As a result, when you query the image catalog, the total bytes returned is exceeding the maximum message size that can be received from a Peer. We are currenly looking at solutions to store image on a separate web server and only encrypt the metadata when storing on the blockchain.
 
